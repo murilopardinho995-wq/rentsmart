@@ -1,0 +1,52 @@
+digraph G {
+  graph [rankdir=TB, nodesep=0.35, ranksep=0.32, fontname="Helvetica", dpi=170];
+  node  [fontname="Helvetica", fontsize=11, style=filled, fillcolor="#FFFFFF", color="#33475B", penwidth=1.3];
+  edge  [fontname="Helvetica", fontsize=10, color="#33475B"];
+
+  ini [label="INÍCIO", shape=oval, fillcolor="#D6EAF8"];
+  nome [label="Ler nome do cliente\n(não pode ser vazio)", shape=parallelogram];
+  tipo [label="Ler tipo de imóvel\n(1-Apto, 2-Casa, 3-Estúdio)\nvalida 1 a 3", shape=parallelogram];
+  d_tipo [label="Tipo?", shape=diamond, fillcolor="#FCF3CF"];
+
+  vaga_e [label="Deseja vaga?\n(s/n)", shape=parallelogram];
+  d_vaga [label="Quer vaga?", shape=diamond, fillcolor="#FCF3CF"];
+  qtd_vagas [label="Ler nº de vagas (1 a 10)", shape=parallelogram];
+  mk_est [label="Criar objeto Estudio(vagas)", shape=box, fillcolor="#E8F8F5"];
+
+  quartos [label="Ler quartos (1 ou 2)\nLer garagem (s/n)", shape=parallelogram];
+  d_apto [label="É apartamento?", shape=diamond, fillcolor="#FCF3CF"];
+  crian [label="Ler: possui crianças? (s/n)", shape=parallelogram];
+  mk_apto [label="Criar objeto\nApartamento(quartos, garagem, crianças)", shape=box, fillcolor="#E8F8F5"];
+  mk_casa [label="Criar objeto\nCasa(quartos, garagem)", shape=box, fillcolor="#E8F8F5"];
+
+  parc [label="Ler nº de parcelas da taxa (1 a 5)\nCriar objeto TaxaContratual", shape=parallelogram];
+  orc [label="Criar objeto Orcamento(cliente, imóvel, taxa)", shape=box, fillcolor="#E8F8F5"];
+  calc [label="Subtotal = aluguel-base + adicionais\n(2º quarto, garagem, estacionamento)", shape=box];
+  d_desc [label="Apartamento\nsem crianças?", shape=diamond, fillcolor="#FCF3CF"];
+  desc [label="Desconto = 5% do subtotal", shape=box];
+  semdesc [label="Desconto = 0", shape=box];
+  alug [label="Aluguel mensal = subtotal − desconto", shape=box];
+  taxa [label="Dividir taxa de R$ 2.000,00\nem parcelas (ajuste de centavos na última)", shape=box];
+  resumo [label="Exibir orçamento detalhado\n(aluguel, adicionais, desconto, taxa, parcelas)", shape=parallelogram];
+  proj [label="Para mês = 1 até 12:\ntotal = aluguel + parcela da taxa (se houver)\nacumular", shape=box];
+  csv [label="Gravar projecao_12_meses.csv", shape=parallelogram];
+  fim [label="FIM", shape=oval, fillcolor="#D6EAF8"];
+
+  ini -> nome -> tipo -> d_tipo;
+  d_tipo -> vaga_e [label="Estúdio"];
+  d_tipo -> quartos [label="Apto / Casa"];
+  vaga_e -> d_vaga;
+  d_vaga -> qtd_vagas [label="Sim"];
+  qtd_vagas -> mk_est;
+  d_vaga -> mk_est [label="Não (0 vagas)"];
+  quartos -> d_apto;
+  d_apto -> crian [label="Sim"];
+  crian -> mk_apto;
+  d_apto -> mk_casa [label="Não"];
+  mk_est -> parc; mk_apto -> parc; mk_casa -> parc;
+  parc -> orc -> calc -> d_desc;
+  d_desc -> desc [label="Sim"];
+  d_desc -> semdesc [label="Não"];
+  desc -> alug; semdesc -> alug;
+  alug -> taxa -> resumo -> proj -> csv -> fim;
+}

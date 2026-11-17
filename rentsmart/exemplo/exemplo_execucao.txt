@@ -1,0 +1,45 @@
+=== RentSmart - R.M Imóveis ===
+Nome do cliente: 
+Tipo de imóvel:
+  1 - Apartamento
+  2 - Casa
+  3 - Estúdio
+Escolha (1-3):   ! Digite um valor entre 1 e 3.
+Escolha (1-3): Quantidade de quartos (1 ou 2):   ! Digite um número inteiro.
+Quantidade de quartos (1 ou 2):   ! Digite um valor entre 1 e 2.
+Quantidade de quartos (1 ou 2): Deseja vaga de garagem? (s/n):   ! Responda com 's' ou 'n'.
+Deseja vaga de garagem? (s/n): Possui crianças? (s/n): 
+Parcelas da taxa contratual (1 a 5):   ! Digite um valor entre 1 e 5.
+
+Parcelas da taxa contratual (1 a 5): 
+==============================================================
+  R.M IMÓVEIS - ORÇAMENTO DE LOCAÇÃO (RentSmart)
+==============================================================
+Cliente : Maria Silva
+Imóvel  : Apartamento de 2 quarto(s), com garagem, sem crianças
+
+ALUGUEL MENSAL
+--------------------------------------------------------------
+  Aluguel-base (Apartamento)                         R$ 700,00
+  Adicional de 2º quarto                             R$ 200,00
+  Vaga de garagem                                    R$ 300,00
+--------------------------------------------------------------
+  Subtotal                                         R$ 1.200,00
+  Desconto (5% - apartamento sem crianças)          - R$ 60,00
+  VALOR DO ALUGUEL MENSAL                          R$ 1.140,00
+
+TAXA CONTRATUAL (cobrada à parte do aluguel)
+--------------------------------------------------------------
+  Valor total da taxa                              R$ 2.000,00
+  Parcelamento                                              3x
+  Parcelas (1ª a 2ª)                                 R$ 666,66
+  Última parcela (ajuste de centavos)                R$ 666,68
+
+RESUMO DO PRIMEIRO ANO
+--------------------------------------------------------------
+  Aluguéis (12 meses)                             R$ 13.680,00
+  Taxa contratual                                  R$ 2.000,00
+  TOTAL PREVISTO NO 1º ANO                        R$ 15.680,00
+==============================================================
+
+Projeção dos 12 meses gerada em: projecao_12_meses.csv

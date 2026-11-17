@@ -1,0 +1,23 @@
+digraph C {
+  graph [rankdir=BT, nodesep=0.4, ranksep=0.6, dpi=170, fontname="Helvetica"];
+  node [shape=record, fontname="Helvetica", fontsize=10, style=filled, fillcolor="#FDFEFE", color="#33475B"];
+  edge [color="#33475B", arrowhead=empty];
+
+  Imovel [label="{«abstrata»\nImovel|+ TIPO, ALUGUEL_BASE, PERCENTUAL_DESCONTO|+ adicionais() «abstrato»\l+ itens_aluguel()\l+ subtotal()\l+ percentual_desconto()\l+ valor_desconto()\l+ aluguel_mensal()\l+ descricao() «abstrato»\l}", fillcolor="#EBF5FB"];
+  Res [label="{«abstrata»\nImovelResidencial|+ quartos, garagem\l+ ADICIONAL_DOIS_QUARTOS, VALOR_GARAGEM|+ adicionais()\l+ descricao()\l}", fillcolor="#EBF5FB"];
+  Apto [label="{Apartamento|+ tem_criancas|+ percentual_desconto()  (5% sem crianças)\l+ descricao()\l}"];
+  Casa [label="{Casa|ALUGUEL_BASE = 900\lADICIONAL_DOIS_QUARTOS = 250|}"];
+  Est [label="{Estudio|+ vagas\l+ PACOTE_VAGAS, VALOR_PACOTE,\l   VALOR_VAGA_ADICIONAL|+ adicionais()\l+ descricao()\l}"];
+
+  Res -> Imovel; Est -> Imovel; Apto -> Res; Casa -> Res;
+
+  Item [label="{ItemOrcamento|+ descricao\l+ valor|}", fillcolor="#FEF9E7"];
+  Taxa [label="{TaxaContratual|+ VALOR = 2000\l+ numero_parcelas|+ parcelas()\l+ valor_parcela(mes)\l}", fillcolor="#FEF9E7"];
+  Orc [label="{Orcamento|+ cliente\l+ imovel\l+ taxa|+ aluguel_mensal()\l+ projecao()\l+ total_primeiro_ano()\l+ resumo()\l}", fillcolor="#E8F8F5"];
+  Exp [label="{ExportadorCSV|+ caminho|+ exportar(linhas)\l}", fillcolor="#E8F8F5"];
+
+  Orc -> Imovel [arrowhead=odiamond, label=" 1 imóvel", fontsize=9];
+  Orc -> Taxa [arrowhead=odiamond, label=" 1 taxa", fontsize=9];
+  Imovel -> Item [arrowhead=vee, style=dashed, label=" cria", fontsize=9];
+  Exp -> Orc [arrowhead=vee, style=dashed, label=" grava a projeção", fontsize=9];
+}
